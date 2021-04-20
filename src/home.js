@@ -37,7 +37,7 @@ export class Home extends Component {
         return (
             <div align="center">
                 <div>
-                    <img src="/Dogecoin_logo.png" height="40%" width="40%" />
+                    <img src="https://res.cloudinary.com/jerrick/image/upload/v1611916824/6013e617b25457001c7d6e2f.png" height="20%" width="20%" />
                 </div>
                 <div id="textInfo">
                     <h2>Price : ${this.state.price.toFixed(7)}</h2>
