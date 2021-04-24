@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import QRCode from "react-qr-code";
-
+import Button from '@material-ui/core/Button';
 
 export class Home extends Component {
     constructor(props) {
@@ -53,6 +53,14 @@ export class Home extends Component {
                     <div align="center">
                         <h2>Tips Appreciated :)</h2>
                         <QRCode value="DB56Yce35J6YS57A7gyN559N7V1NDptoJr" size="128" />
+                        <br></br>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() => navigator.clipboard.writeText('DB56Yce35J6YS57A7gyN559N7V1NDptoJr')}
+                        >
+                            Copy
+                        </Button>
                     </div>
                 </div>
             </div>
