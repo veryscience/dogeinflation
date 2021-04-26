@@ -3,8 +3,27 @@ body {
   background-color: #d9bd62;
 }
 
-a {
-  text-decoration: none;
+p{
+  display: inline-block;
+}
+
+a{
+  display: inline-block;
+  color: inherit; 
+}
+
+#bitcoin:hover {
+  background-color: orange;
+  color: inherit; 
+}
+
+#monero:hover {
+  background-color: #4c4c4c;
+  color: inherit; 
+}
+
+a:visited{
+  color: inherit;
 }
 
 label {

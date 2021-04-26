@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import QRCode from "react-qr-code";
 import Button from '@material-ui/core/Button';
+import bitcoinLogo from "./bitcoinLogo.png"
+import moneroLogo from "./monero.png"
+import dogeLogo from "./Dogecoin_logo.png"
 
 export class Home extends Component {
     constructor(props) {
@@ -11,7 +14,9 @@ export class Home extends Component {
             circulation: 100000000,
             price: 0,
             marketCap: 0,
-            rank: 1
+            rank: 1,
+            bitcoinInflation: 1,
+            moneroInflation: 1
         }
     }
 
@@ -21,11 +26,42 @@ export class Home extends Component {
 
         let data = result.data.market_data
 
+        //bitcoin info
+        let bitcoinResult = await axios.get("https://api.coingecko.com/api/v3/coins/bitcoin?tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true")
+        let bitcoinBlockInfo = await axios.get("https://blockchain.info/q/bcperblock")
+
+        let bitcoinLastReward = bitcoinBlockInfo.data
+        bitcoinLastReward *= 52560
+        bitcoinLastReward = bitcoinLastReward.toFixed(2)
+
+        let bitcoinData = bitcoinResult.data.market_data
+
+        let bitcoinInflation = bitcoinLastReward / bitcoinData.circulating_supply
+        bitcoinInflation = 100 * bitcoinInflation
+
+        //moneor info
+        let moneroResult = await axios.get("https://api.coingecko.com/api/v3/coins/monero?tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true")
+        let moneroBlockInfo = await axios.get("https://localmonero.co/blocks/api/get_stats")
+
+        let moneroLastReward = moneroBlockInfo.data.last_reward
+        moneroLastReward = moneroLastReward.toString()
+        moneroLastReward = moneroLastReward[0] + '.' + moneroLastReward.slice(1)
+        moneroLastReward = Number(moneroLastReward)
+        moneroLastReward *= 262800
+        moneroLastReward = moneroLastReward.toFixed(3)
+
+        let moneroData = moneroResult.data.market_data
+
+        let moneroInflation = moneroLastReward / moneroData.circulating_supply
+        moneroInflation = 100 * moneroInflation
+
         this.setState({
             circulation: data.circulating_supply,
             price: data.current_price.usd,
             marketCap: data.market_cap.usd,
-            rank: data.market_cap_rank
+            rank: data.market_cap_rank,
+            bitcoinInflation: bitcoinInflation,
+            moneroInflation: moneroInflation
         })
 
     }
@@ -37,7 +73,7 @@ export class Home extends Component {
         return (
             <div align="center">
                 <div>
-                    <img src="https://res.cloudinary.com/jerrick/image/upload/v1611916824/6013e617b25457001c7d6e2f.png" height="20%" width="20%" />
+                    <img src={dogeLogo} height="35%" width="35%" />
                 </div>
                 <div id="textInfo">
                     <h2>Price : ${this.state.price.toFixed(7)}</h2>
@@ -62,6 +98,26 @@ export class Home extends Component {
                             Copy
                         </Button>
                     </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <h3>Other Coins</h3>
+                <div id="bitcoin">
+                    <a href="https://veryscience.github.io/bitcoininflation/" >
+                        <img src={bitcoinLogo} height="14%" width="14%" />
+                        <br />
+                        <p>Inflation: {this.state.bitcoinInflation.toFixed(2)}%</p>
+                    </a>
+                </div>
+                <br />
+                <div id="monero">
+                    <a href="https://veryscience.github.io/moneroinflation/" >
+                        <img src={moneroLogo} height="9%" width="9%" />
+                        <br />
+                        <p>Inflation: {this.state.moneroInflation.toFixed(2)}%</p>
+                    </a>
                 </div>
             </div>
         )
