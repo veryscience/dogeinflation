@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/dogeinflation/static/css/main.1e1c72dd.chunk.css",
-    "main.js": "/dogeinflation/static/js/main.b8493b9e.chunk.js",
-    "main.js.map": "/dogeinflation/static/js/main.b8493b9e.chunk.js.map",
+    "main.js": "/dogeinflation/static/js/main.cf126fbb.chunk.js",
+    "main.js.map": "/dogeinflation/static/js/main.cf126fbb.chunk.js.map",
     "runtime-main.js": "/dogeinflation/static/js/runtime-main.8e28319e.js",
     "runtime-main.js.map": "/dogeinflation/static/js/runtime-main.8e28319e.js.map",
     "static/js/2.452a6e2d.chunk.js": "/dogeinflation/static/js/2.452a6e2d.chunk.js",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.8e28319e.js",
     "static/js/2.452a6e2d.chunk.js",
     "static/css/main.1e1c72dd.chunk.css",
-    "static/js/main.b8493b9e.chunk.js"
+    "static/js/main.cf126fbb.chunk.js"
   ]
 }
