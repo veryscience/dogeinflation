@@ -39,13 +39,13 @@ export class Home extends Component {
         let bitcoinInflation = bitcoinLastReward / bitcoinData.circulating_supply
         bitcoinInflation = 100 * bitcoinInflation
 
-        //moneor info
+        //monero info
         let moneroResult = await axios.get("https://api.coingecko.com/api/v3/coins/monero?tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true")
         let moneroBlockInfo = await axios.get("https://localmonero.co/blocks/api/get_stats")
 
         let moneroLastReward = moneroBlockInfo.data.last_reward
         moneroLastReward = moneroLastReward.toString()
-        moneroLastReward = moneroLastReward[0] + '.' + moneroLastReward.slice(1)
+        moneroLastReward = '0.' + moneroLastReward
         moneroLastReward = Number(moneroLastReward)
         moneroLastReward *= 262800
         moneroLastReward = moneroLastReward.toFixed(3)
